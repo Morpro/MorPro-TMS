@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     Role.belongsToMany(models.User, {through:'UserRole'});
-    Role.belongsToMany(models.Group, {through:'RoleGroup'});
+    
     
   };
 

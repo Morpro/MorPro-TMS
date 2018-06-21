@@ -14,25 +14,25 @@ $(document).ready(function(){
         });
     });
 
-    var startWeek = getWorkWeek(moment());
-    $("#start-date").val(startWeek.start.format("YYYY-MM-DD"));
-    $("#end-date").val(startWeek.end.format("YYYY-MM-DD"));
+    // var startWeek = getWorkWeek(moment());
+    // $("#start-date").val(startWeek.start.format("YYYY-MM-DD"));
+    // $("#end-date").val(startWeek.end.format("YYYY-MM-DD"));
     
-    $("#prev-week-button").click(event=>{
-        var newWeek = getWorkWeek(moment($("#start-date").val(), "YYYY-MM-DD"),(-1));
-        $("#start-date").val(newWeek.start.format("YYYY-MM-DD"));
-        $("#end-date").val(newWeek.end.format("YYYY-MM-DD"));
-        $("#start-date").trigger("change");
-    });
+    // $("#prev-week-button").click(event=>{
+    //     var newWeek = getWorkWeek(moment($("#start-date").val(), "YYYY-MM-DD"),(-1));
+    //     $("#start-date").val(newWeek.start.format("YYYY-MM-DD"));
+    //     $("#end-date").val(newWeek.end.format("YYYY-MM-DD"));
+    //     $("#start-date").trigger("change");
+    // });
 
-    $("#next-week-button").click(event=>{
-        var newWeek = getWorkWeek(moment($("#start-date").val(), "YYYY-MM-DD"),1);
-        $("#start-date").val(newWeek.start.format("YYYY-MM-DD"));
-        $("#end-date").val(newWeek.end.format("YYYY-MM-DD"));
-        $("#start-date").trigger("change");
-    });
+    // $("#next-week-button").click(event=>{
+    //     var newWeek = getWorkWeek(moment($("#start-date").val(), "YYYY-MM-DD"),1);
+    //     $("#start-date").val(newWeek.start.format("YYYY-MM-DD"));
+    //     $("#end-date").val(newWeek.end.format("YYYY-MM-DD"));
+    //     $("#start-date").trigger("change");
+    // });
 
-    $("#user-select, #start-date, #end-date").on("change", event=>{
+    
         $("tbody").empty();
         $("#total").text(0);
         $.get("/api/currentuserid")
@@ -75,7 +75,7 @@ $(document).ready(function(){
                 
             });
         });
-     });
+     
 
     $.get("/api/users")
     .then(users=>{

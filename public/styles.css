@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+
+
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif !important;
 }
@@ -25,6 +27,10 @@ html, body {
 }
 .button, input {
   color: #4db6ac !important;
+}
+
+#tabledatabase table{
+  width:850px;
 }
 
 #members-login{

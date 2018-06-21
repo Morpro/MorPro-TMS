@@ -38,11 +38,43 @@ $(document).ready(function(){
     loadUserOptions(loadUnassignloadOptions);
     loadloadOptions();
     
+
+
+    $.get("/api/currentuserid")
+    .then(id=>{
+
+        $.get("/api/users/"+id+"/roles")
+        .then(roles=>{
+            // console.log("Is admin:");
+            // console.log(roles.find(role=>(role.name === "Admin")));
+            // console.log("Is payroll:");
+            // console.log(roles.find(role=>(role.name === "Payroll")));
+            if(!roles.find(role=>(role.name === "Admin"))) {
+                console.log("user is not an admin");
+                $("#admin-link").remove();
+            }
+            if(!roles.find(role=>(role.name === "Payroll"))) {
+                console.log("user is not a payroll");
+                $("#payroll-link").remove();
+            }
+        });
+
+
+
+
+
+
+         $.get("/api/users/"+id)
+        .then(user=>{
+            $("#username").text(user.firstName + " " + user.lastName);
+            console.log(user.firstName)
+        });
+
      //Create new Load Puts into Database
     $("#create-load-form").submit(event=>{
         event.preventDefault();
         $.post("/api/loads", {
-             name : parseInt($("#loadName").val()),
+             name : ($("#loadName").val()),
              Company : $("#loadCompany").val(),
              LoadNumber : parseInt($("#loadNumber").val()),
              PickUp : $("#loadPickUp").val(),
@@ -108,6 +140,22 @@ $("#assign-load-form").submit(event=>{
         });
     });
 
+// udates the load status
+ $("#loadStatus").submit(event=>{
+        event.preventDefault();
+        $.ajax("/api/loads/", {
+            method:"PUT",
+            data: {
+                id:$("#loadId").val(),
+                Status:$("#status").val()
+            }
+        }).done( function(data){
+            console.log(data);
+            $("#change-role-form").trigger("reset");
+        });
+    });
+
+
     $("#change-role-form").submit(event=>{
         event.preventDefault();
         $.ajax("/api/roles/", {
@@ -131,4 +179,5 @@ $("#assign-load-form").submit(event=>{
             $("#delete-role-form").trigger("reset");
         });
     });
+});
 });

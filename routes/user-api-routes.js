@@ -105,7 +105,7 @@ module.exports = function(app) {
         });
     });
 
-// post a load
+// gets load assigned from user
     app.get("/api/users/:id/loads", (req,res)=>{
         db.User.findById(req.params.id)
         .then(user=>{

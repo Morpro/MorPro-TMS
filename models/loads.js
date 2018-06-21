@@ -7,8 +7,15 @@ module.exports = function(sequelize, DataTypes) {
     "PickUp": DataTypes.STRING,
     "Dropoff": DataTypes.STRING,
     "Weight": DataTypes.STRING,
-    "Rate": DataTypes.INTEGER
+    "Rate": DataTypes.INTEGER,
+    "Status": { 
+      type: DataTypes.BOOLEAN, 
+      allowNull: false, 
+      defaultValue: true }
   });
+    // "contact":{
+      
+    // }
 
      Loads.associate = function(models) {
      Loads.belongsToMany(models.User, {through:'LoadsUser'});
