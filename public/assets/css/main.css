@@ -15,10 +15,10 @@
 /********************
  * GENERAL STYLES
  ********************/
-.hiddenRow {
-    padding: 0 4px !important;
-    background-color: red;
-    font-size: 13px;
+.hide {
+  display: none;
+  display: table-row;
+  background-color: blue;
 }
 
 #map{

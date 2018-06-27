@@ -67,16 +67,16 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Rate))
                     .append($("<td>").text(load.quantity))
 
-                    .append('<td class="hide">').text(load.quantity)
+                    .append('<td colspan="6" class="hide">').text(load.quantity)
                     .append($("<button>"));
                     
                 $entryRow.appendTo("tbody");
 
 
              });
-             $('body').delegate('td.button').click(
+             $('body').delegate('td button').click(
                         (e)=>{
-                            // console.log($(e.target).parent().children().filter('.row'));
+                            console.log($(e.target).parent().children().filter('.row'));
                             e.preventDefault();
                             $(e.target).children().filter('.row').toggleClass("hide");
                         })
