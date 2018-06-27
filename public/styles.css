@@ -289,6 +289,13 @@ _:-ms-input-placeholder, :root .demo-graph {
   margin: auto;
   size: 50px;
 }
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
 /*   
   background-color: #1ab394 !important;
   color: #fff !important;

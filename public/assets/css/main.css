@@ -15,6 +15,11 @@
 /********************
  * GENERAL STYLES
  ********************/
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: red;
+    font-size: 13px;
+}
 
 #map{
   height: 630px;

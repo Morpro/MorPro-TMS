@@ -21,7 +21,6 @@ $(document).ready(function() {
 
 /// bottom is original code for page
 
-    var taskIds = [];
 
     $.get("/api/currentuserid")
     .then(id=>{
@@ -67,11 +66,21 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
                     .append($("<td>").text(load.quantity))
-                    .append($("<button>"))
 
+                    .append('<td class="hide">').text(load.quantity)
+                    .append($("<button>"));
+                    
                 $entryRow.appendTo("tbody");
-             });
 
+
+             });
+             $('body').delegate('td.button').click(
+                        (e)=>{
+                            // console.log($(e.target).parent().children().filter('.row'));
+                            e.preventDefault();
+                            $(e.target).children().filter('.row').toggleClass("hide");
+                        })
+                //
         });
     });
 });
