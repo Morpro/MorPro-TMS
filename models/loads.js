@@ -8,16 +8,21 @@ module.exports = function(sequelize, DataTypes) {
     "Dropoff": DataTypes.STRING,
     "Weight": DataTypes.STRING,
     "Rate": DataTypes.INTEGER,
-    "Status": { 
-      type: DataTypes.BOOLEAN, 
-      allowNull: false, 
+    "Status": {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
       defaultValue: true }
   });
 
+
      Loads.associate = function(models) {
      Loads.belongsToMany(models.User, {through:'LoadsUser'});
+     Loads.belongsTo(models.Address,{as:'loadAdress', foreignKey:'AddressId'}  );
+     // Loads.belongsToMany(models.Address, {through:'LoadsUser'});
+     // Loads.belongsToMany(models.Address, {through:'LoadAdress'});
+
    };
-  
+
 
   return Loads;
 };

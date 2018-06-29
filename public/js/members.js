@@ -49,7 +49,6 @@ $(document).ready(function() {
 
 
 
-
          $.get("/api/users/"+id)
         .then(user=>{
             $("#username").text(user.firstName + " " + user.lastName);
@@ -73,16 +72,16 @@ $(document).ready(function() {
                     .append($("<td>").append("<button>"))
                 var $childRow = $('<tr class="child">')
                 $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
-                         .append($('<td colspan="1">').text(load.Company)).hide()
-                         
+                         .append($('<td colspan="1">').text(load.loadAdress.PUadress)).hide()
+
 
 
                 $entryRow.appendTo("tbody");
                 $childRow.appendTo("tbody");
 
              });
-             
-                
+
+
         });
     });
 });

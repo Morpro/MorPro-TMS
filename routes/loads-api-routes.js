@@ -11,11 +11,22 @@ module.exports = function(app) {
 
    // find and displays loads with status unasigned
    app.get("/api/loads/status/:status", function(req,res){
-        db.Loads.findAll({where:{status:req.params.status}})
+        db.Loads.findAll({where:{status:req.params.status},include: [{ all: true }]})
         .then(function(Loads){
             res.json(Loads);
         });
     });
+
+// finds all loads including nested
+//can also be for one id if you follow top example
+    app.get("/api/loadsinfo", function(req,res){
+        db.Loads.findAll({include: [{ all: true }]})
+        .then(function(roles){
+            res.json(roles);
+        });
+    });
+
+
 
  // update loads status to availble or none.
  //(NOT WORKING)
@@ -54,7 +65,7 @@ module.exports = function(app) {
             res.json(loads);
         });
     });
- // updates the load 
+ // updates the load
     app.put("/api/loads", (req,res)=>{
         db.Loads.update(req.body, {where:{id:req.body.id}})
         .then(function(role){
@@ -62,15 +73,15 @@ module.exports = function(app) {
         });
     });
 
-   
- // delete load from 
+
+ // delete load from
     app.delete("/api/loads/:id", (req,res)=>{
         db.Loads.destroy({where:{id:req.params.id}})
         .then(load=>{
             res.json(load);
         });
     });
-   
+
  // assigns loads to a user
     app.post("/api/loads/assignloads", (req,res)=>{
         db.LoadsUser.create(req.body)
@@ -80,9 +91,9 @@ module.exports = function(app) {
     });
 
 //     // ---------------------------date search info--------------------------//
-    
 
-   
+
+
 
 //     app.get("/api/loads/date/:date", (req,res)=>{
 //         db.Loads.findAll({where:{date:req.params.date}})
