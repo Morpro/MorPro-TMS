@@ -71,7 +71,12 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Rate))
                     .append($("<td>").text(load.quantity))
                     .append($("<td>").append("<button>"))
-                var $childRow = $('<tr class="child">').append($('<td colspan="6">').text(load.Rate)).hide();   
+                var $childRow = $('<tr class="child">')
+                $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
+                         .append($('<td colspan="1">').text(load.Company)).hide()
+                         
+
+
                 $entryRow.appendTo("tbody");
                 $childRow.appendTo("tbody");
 

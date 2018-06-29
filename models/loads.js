@@ -17,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
      Loads.associate = function(models) {
      Loads.belongsToMany(models.User, {through:'LoadsUser'});
    };
+  
 
   return Loads;
 };
