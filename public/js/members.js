@@ -15,7 +15,11 @@ $(document).ready(function() {
     // });
 
 
+    $('tbody').delegate('td button').click(function(e){
+                            e.preventDefault();
 
+                            $(e.target).parent().parent().next().toggle("slow");
+                        });
     // $("#user-select").on("change", event=>{
 
 
@@ -66,21 +70,14 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
                     .append($("<td>").text(load.quantity))
-
-                    .append('<td colspan="6" class="hide">').text(load.quantity)
-                    .append($("<button>"));
-                    
+                    .append($("<td>").append("<button>"))
+                var $childRow = $('<tr class="child">').append($('<td colspan="6">').text(load.Rate)).hide();   
                 $entryRow.appendTo("tbody");
-
+                $childRow.appendTo("tbody");
 
              });
-             $('body').delegate('td button').click(
-                        (e)=>{
-                            console.log($(e.target).parent().children().filter('.row'));
-                            e.preventDefault();
-                            $(e.target).children().filter('.row').toggleClass("hide");
-                        })
-                //
+             
+                
         });
     });
 });

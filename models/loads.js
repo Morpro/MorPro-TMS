@@ -13,13 +13,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false, 
       defaultValue: true }
   });
-    // "contact":{
-      
-    // }
 
      Loads.associate = function(models) {
      Loads.belongsToMany(models.User, {through:'LoadsUser'});
-         //Loads.belongsTo
    };
 
   return Loads;
