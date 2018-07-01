@@ -39,8 +39,8 @@ module.exports = function(app) {
     app.get("/roles", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/roleApiTest.html"));
     });
-    
-    app.get("/roles", function(req, res) {
+
+    app.get("/roles" , isAuthenticated, function(req, res) {
         res.sendFile(path.join(__dirname, "../public/Manage-Load.html"));
     });
 

@@ -35,9 +35,16 @@ $(document).ready(function(){
         });
     };
 
+    function successPost (callback) {
+      $("#alert .msg").text();
+      $("#alert").fadeIn(500);
+      $("#alert").fadeOut(4500);
+
+    }
+
     loadUserOptions(loadUnassignloadOptions);
     loadloadOptions();
-    
+
 
 
     $.get("/api/currentuserid")
@@ -81,10 +88,7 @@ $(document).ready(function(){
              Dropoff :$("#loadDropOff").val(),
              Weight : parseInt($("#loadWeight").val()),
              Rate : parseInt($("#loadRate").val())
-        }).done(data=>{
-            console.log(data);
-            $("#create-load-form").trigger("reset");
-        });
+        }).then(successPost)
     });
 ///need to assign task
 
@@ -113,7 +117,7 @@ $("#assign-load-form").submit(event=>{
 //             $("#assign-load-form").trigger("reset");
 //         });
 //     });
-    
+
 
     $("#new-role-form").submit(event=>{
         event.preventDefault();

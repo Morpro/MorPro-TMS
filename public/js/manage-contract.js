@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     // // This file just does a GET request to figure out which user is logged in
     // // and updates the HTML on the page
@@ -20,6 +19,9 @@ $(document).ready(function() {
 
                             $(e.target).parent().parent().next().toggle("slow");
                         });
+
+
+
     // $("#user-select").on("change", event=>{
 
 
@@ -56,7 +58,7 @@ $(document).ready(function() {
         });
 
        // gets loadboard with value of true[1] or by unasigned
-        $.get("api/loads/status/1")
+        $.get("api/loads/")
         .then(loads=>{
             console.log("got all loads",loads)
             loads.forEach(load =>{
@@ -68,18 +70,28 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Dropoff))
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
-                    .append($("<td>").append("<button class='btn btn-info'>+</button>"))
+                    .append($("<td class='Status'>").append("<p>").text(load.Status))
+                    .append($("<td>").append("<button>"))
                 var $childRow = $('<tr class="child">')
                 $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
                          .append($('<td colspan="1">').text(load.Weight)).hide()
 
-
-
                 $entryRow.appendTo("tbody");
                 $childRow.appendTo("tbody");
 
-             });
 
+
+                if(!loads.forEach(load=>(load.Status === "1"))) {
+                  $(".Status").text("available");
+
+                    $(".Status").addClass("label label-success");
+
+
+
+
+                }
+
+             });
 
         });
     });
