@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Address= sequelize.define("Address", {
     // Giving the Author model a name of type STRING
    //DO = drop off  example DOadress
-   "PUadress": DataTypes.STRING,
+   "PUadress":DataTypes.STRING,
    "PUcity": DataTypes.STRING,
    "PUzipcode": DataTypes.STRING,
    "PUstate": DataTypes.STRING,

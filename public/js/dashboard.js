@@ -40,23 +40,7 @@ $(document).ready(function() {
 
         })
         // get all loads for that user
-        .get("/api/currentuserid")
-            .then(id=>{
-                $.get("/api/users/"+ id + "/loads")
-                .then(Userloads=>{
-                	console.log(Userloads)
-                // 	var totalCompleted =[];
-                // 	Userloads.forEach(load=>{
-                // 		totalCompleted.push(load.Rate)
-                // 	})
 
-                // 	var sum = totalCompleted.length
-                // 	console.log('all user loads', sum);
-
-
-                // })
-
-            });
         $.get("api/loads/status/1")
                 .then(loads=>{
                     console.log(loads);
@@ -72,4 +56,4 @@ $(document).ready(function() {
 
 
     })
- })
+  })
