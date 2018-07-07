@@ -12,6 +12,45 @@ $(document).ready(function() {
     //     $("#date-select").val(nextDate.format("YYYY-MM-DD"));
     //     $("#date-select").trigger("change");
     // });
+    function loadUserOptions(callback) {
+        $.get("/api/users", users=>{
+            $("#user-select").empty();
+            $("#user-unassign-select").empty();
+            users.forEach(user=>{
+                $("<option value='" + user.id + "'>" + user.firstName + " " + user.lastName + "</option>")
+                    .appendTo($("#user-select"));
+                $("<option value='" + user.id + "'>" + user.firstName + " " + user.lastName + "</option>")
+                    .appendTo($("#user-unassign-select"));
+            });
+            if(!!callback) callback();
+        });
+    };
+
+    function loadloadOptions(callback) {
+        $.get("/api/loads", loads=>{
+            $("#loadId").empty();
+            loads.forEach(load=>{
+                $("<option value='" + load.id + "'>" + load.name + "</option>")
+                    .appendTo($("#loadId"));
+            });
+            if(!!callback) callback();
+        });
+    };
+
+    function loadStatusOptions(callback) {
+        $.get("/api/loads", loads=>{
+            $("#load-select").empty();
+            loads.forEach(load=>{
+                $("<option value='" + load.id + "'>" + load.name + "</option>")
+                    .appendTo($("#load-select"));
+            });
+            if(!!callback) callback();
+        });
+    };
+    loadStatusOptions();
+    loadloadOptions();
+    loadUserOptions();
+
 
 
     $('tbody').delegate('td button').click(function(e){
@@ -94,5 +133,20 @@ $(document).ready(function() {
              });
 
         });
+
     });
+    $("#loadStatus").submit(event=>{
+           event.preventDefault();
+           $.ajax("/api/loads/", {
+               method:"PUT",
+               data: {
+                   id:$("#loadId").val(),
+                   Status:$("#status").val()
+               }
+           }).done( function(data){
+               console.log(data);
+               $("#change-role-form").trigger("reset");
+           });
+       });
+
 });

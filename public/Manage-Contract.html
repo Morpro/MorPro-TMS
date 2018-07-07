@@ -138,8 +138,49 @@
                   </table>
                 </div>
               </div>
-              <!-- END TABLE HOVER -->
+
+              <div class="panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Assign Load</h3>
+                </div>
+                <div class="row panel-body">
+                        <div  class="col-sm-4">
+                          <form id="assign-load-form">
+                              <div class="selectOption">
+                                  <label for="load-select"><h4> Assign load</h4></label>
+                                  <br>
+                                  <select id="load-select"></select>
+                              </div>
+
+                              <div class="selectOption">
+                                <label for="user-select"><h4> Assign load</h4></label>
+                                <br>
+                                <select id="user-select"></select>
+                              </div>
+                              <input  class="btn btn-primary" type="submit" id="assign-load-submit">
+                          </form>
+                          </div>
+
+                        <div  class="col-sm-4">
+                          <form id="loadStatus">
+                              <div class="selectOption">
+                                 <label for="loadRate"><h4>Load Name</h4></label>
+                                 <br>
+                                 <select id="loadId"></select>
+                             </div>
+                                    <br>
+                             <div class="selectOption">
+                             <select id="status">
+                               <option value="1">avalible</option>
+                               <option value="2">Booked</option>
+                             </select>
+                           </div>
+                             <input class="btn btn-primary" type="submit" id="updateStatus">
+                         </form>
+                       </div>
+                 </div>
             </div>
+      </div>
       <!-- MAIN CONTENT -->
       <!-- <div id="tabledatabase">
           <table class="/">
