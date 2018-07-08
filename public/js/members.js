@@ -56,7 +56,7 @@ $(document).ready(function() {
         });
 
        // gets loadboard with value of true[1] or by unasigned
-        $.get("api/loads/status/1")
+        $.get("api/loads/status/false")
         .then(loads=>{
             console.log("got all loads",loads)
             loads.forEach(load =>{
