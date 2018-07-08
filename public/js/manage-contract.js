@@ -102,6 +102,11 @@ $(document).ready(function() {
             console.log("got all loads",loads)
             loads.forEach(load =>{
                 var $entryRow = $("<tr>");
+                var status = (!load.Status)? "Available" : "Booked";
+                var statusClass = (!load.Status)? "label-success" : "label-danger"; 
+
+                $("#status").val(load.Status);
+
                 $entryRow.append($("<td>").text(load.name))
                     .append($("<td>").text(load.Company))
                     .append($("<td>").text(load.LoadNumber))
@@ -109,7 +114,7 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Dropoff))
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
-                    .append($("<td class='Status'>").append("<p>").text(load.Status))
+                    .append($("<td class='Status'>").append("<p>").text(status).addClass("label").addClass(statusClass))
                     .append($("<td>").append("<button>"))
                 var $childRow = $('<tr class="child">')
                 $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
@@ -120,15 +125,16 @@ $(document).ready(function() {
 
 
 
-                if(!loads.forEach(load=>(load.Status === "1"))) {
-                  $(".Status").text("available");
+                // loads.forEach(load=> {
+                // if (!load.Status){
+                //   $(".Status").text("available");
+                //   $(".Status").addClass("label label-success");
 
-                    $(".Status").addClass("label label-success");
+                // }else{
+                //   $(".Status").text("booked");
+                //   $(".Status").addClass("label label-danger");
 
-
-
-
-                }
+                // }
 
              });
 
@@ -148,5 +154,16 @@ $(document).ready(function() {
                $("#change-role-form").trigger("reset");
            });
        });
+
+    $("#assign-load-form").submit(event=>{
+        event.preventDefault();
+        $.post("/api/loads/assignloads", {
+             UserId: $("#user-select").val(),
+             LoadId:$("#load-select").val()
+        }).done(data=>{
+            console.log(data);
+            $("#assign-load-form").trigger("reset");
+        });
+    });
 
 });
