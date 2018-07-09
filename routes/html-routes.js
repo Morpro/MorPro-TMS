@@ -1,6 +1,6 @@
 // Requiring path to so we can use relative routes to our HTML files
 
-// add the html routes from new admin panel 
+// add the html routes from new admin panel
 var path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
@@ -36,6 +36,14 @@ module.exports = function(app) {
 
     app.get("/users", isAuthenticated, function(req, res) {
         res.sendFile(path.join(__dirname, "../public/userApiTest.html"));
+    });
+
+    app.get("/dashboard", isAuthenticated, function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/dashboard.html"));
+    });
+
+    app.get("/quote", isAuthenticated, function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/quote.html"));
     });
 
     app.get("/roles", function(req, res) {

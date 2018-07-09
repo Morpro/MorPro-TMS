@@ -88,8 +88,8 @@
       <div class="sidebar-scroll">
         <nav>
           <ul class="nav">
-            <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="members.html" class="active"><i class="lnr lnr-code"></i> <span>Load Board</span></a></li>
+            <li><a href="/dashboard" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="/members" class="active"><i class="lnr lnr-code"></i> <span>Load Board</span></a></li>
             <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Get a quote</span></a></li>
             <li><a href="Manage-Load.html" class=""><i class="lnr lnr-cog"></i> <span>Manage Load</span></a></li>
             <li><a href="payroll.html" class=""><i class="lnr lnr-alarm"></i> <span>Payments</span></a></li>
@@ -130,6 +130,9 @@
                         <th>DropOff</th>
                         <th>Weight</th>
                         <th class="rate">rate</th>
+                        <th>Info</th>
+                        <th>status</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -141,6 +144,10 @@
 
               <div class="panel">
                 <div class="panel-heading">
+                  <div style="display: none" id="alert" class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span class="msg">Loaded Status was successfully Updated!</span>
+                  </div>
                   <h3 class="panel-title">Assign Load</h3>
                 </div>
                 <div class="row panel-body">
@@ -160,6 +167,18 @@
                               <input  class="btn btn-primary" type="submit" id="assign-load-submit">
                           </form>
                           </div>
+
+                          <div  class="col-sm-4">
+                            <form id="unassign-load-form">
+                                <h4>Unassign Loads</h4>
+                               <br>
+                               <h3> select load</h3>
+                                <select id="unload-select"></select>
+                                <select id="user-unassign-select"></select>
+                                <input type="submit" id="unassign-task-submit"></select>
+                            </form>
+                            </div>
+
 
                         <div  class="col-sm-4">
                           <form id="loadStatus">

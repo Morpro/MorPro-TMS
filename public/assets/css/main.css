@@ -15,6 +15,13 @@
 /********************
  * GENERAL STYLES
  ********************/
+ #info{
+   width: 69px;
+ }
+.Status{
+  display: inline-block;
+  padding-left: : 8px;
+}
 .btn-primary{
   width: 97px;
 }

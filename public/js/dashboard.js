@@ -41,7 +41,7 @@ $(document).ready(function() {
         })
         // get all loads for that user
 
-        $.get("api/loads/status/1")
+        $.get("api/loads/status/false")
                 .then(loads=>{
                     console.log(loads);
                     var total = [];

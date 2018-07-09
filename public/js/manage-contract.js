@@ -1,17 +1,5 @@
 $(document).ready(function() {
-    // // This file just does a GET request to figure out which user is logged in
-    // // and updates the HTML on the page
-    // $('#date-select').val(moment().format("YYYY-MM-DD"));
-    // $("#prev-date-button").click(event=>{
-    //     var prevDate = moment($('#date-select').val(),"YYYY-MM-DD").subtract(1,"days");
-    //     $("#date-select").val(prevDate.format("YYYY-MM-DD"));
-    //     $("#date-select").trigger("change");
-    // });
-    // $("#next-date-button").click(event=>{
-    //     var nextDate = moment($('#date-select').val(),"YYYY-MM-DD").add(1,"days");
-    //     $("#date-select").val(nextDate.format("YYYY-MM-DD"));
-    //     $("#date-select").trigger("change");
-    // });
+
     function loadUserOptions(callback) {
         $.get("/api/users", users=>{
             $("#user-select").empty();
@@ -47,17 +35,36 @@ $(document).ready(function() {
             if(!!callback) callback();
         });
     };
+
+    function unLoadOptions(callback) {
+        $.get("/api/loads", loads=>{
+            $("#unload-select").empty();
+            loads.forEach(load=>{
+                $("<option value='" + load.id + "'>" + load.name + "</option>")
+                    .appendTo($("#unload-select"));
+            });
+            if(!!callback) callback();
+        });
+    };
+
+    function successPost (callback) {
+      $("#alert .msg").text();
+      $("#alert").fadeIn(500);
+      $("#alert").fadeOut(4500);
+
+    };
+
     loadStatusOptions();
     loadloadOptions();
     loadUserOptions();
+    unLoadOptions();
 
 
 
     $('tbody').delegate('td button').click(function(e){
-                            e.preventDefault();
-
-                            $(e.target).parent().parent().next().toggle("slow");
-                        });
+      e.preventDefault();
+      $(e.target).parent().parent().next().toggle("slow");
+      });
 
 
 
@@ -87,9 +94,6 @@ $(document).ready(function() {
         });
 
 
-
-
-
          $.get("/api/users/"+id)
         .then(user=>{
             $("#username").text(user.firstName + " " + user.lastName);
@@ -103,7 +107,7 @@ $(document).ready(function() {
             loads.forEach(load =>{
                 var $entryRow = $("<tr>");
                 var status = (!load.Status)? "Available" : "Booked";
-                var statusClass = (!load.Status)? "label-success" : "label-danger"; 
+                var statusClass = (!load.Status)? "label-success" : "label-danger";
 
                 $("#status").val(load.Status);
 
@@ -114,33 +118,21 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Dropoff))
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
+                    .append($("<td id='info'>").append("<button class='btn btn-info'>+</button>"))
                     .append($("<td class='Status'>").append("<p>").text(status).addClass("label").addClass(statusClass))
-                    .append($("<td>").append("<button>"))
                 var $childRow = $('<tr class="child">')
                 $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
                          .append($('<td colspan="1">').text(load.Weight)).hide()
 
                 $entryRow.appendTo("tbody");
                 $childRow.appendTo("tbody");
-
-
-
-                // loads.forEach(load=> {
-                // if (!load.Status){
-                //   $(".Status").text("available");
-                //   $(".Status").addClass("label label-success");
-
-                // }else{
-                //   $(".Status").text("booked");
-                //   $(".Status").addClass("label label-danger");
-
-                // }
-
              });
 
         });
 
     });
+
+    // UPDATES LOAD STATUS TO BOOKED OR Available
     $("#loadStatus").submit(event=>{
            event.preventDefault();
            $.ajax("/api/loads/", {
@@ -151,13 +143,27 @@ $(document).ready(function() {
                }
            }).done( function(data){
                console.log(data);
+               successPost()
                $("#change-role-form").trigger("reset");
            });
        });
-
+   // ASSIGNS LOAD TO A USER
     $("#assign-load-form").submit(event=>{
         event.preventDefault();
         $.post("/api/loads/assignloads", {
+             UserId: $("#user-select").val(),
+             LoadId:$("#load-select").val()
+        }).done(data=>{
+            console.log(data);
+            $("#assign-load-form").trigger("reset");
+            successPost()
+        });
+    });
+
+     //  UNASSIGNS LOAD FROM A USER
+    $("#unassign-load-form").submit(event=>{
+        event.preventDefault();
+        $.post("/api/loads/unassignloads", {
              UserId: $("#user-select").val(),
              LoadId:$("#load-select").val()
         }).done(data=>{
@@ -167,3 +173,18 @@ $(document).ready(function() {
     });
 
 });
+
+
+// // This file just does a GET request to figure out which user is logged in
+// // and updates the HTML on the page
+// $('#date-select').val(moment().format("YYYY-MM-DD"));
+// $("#prev-date-button").click(event=>{
+//     var prevDate = moment($('#date-select').val(),"YYYY-MM-DD").subtract(1,"days");
+//     $("#date-select").val(prevDate.format("YYYY-MM-DD"));
+//     $("#date-select").trigger("change");
+// });
+// $("#next-date-button").click(event=>{
+//     var nextDate = moment($('#date-select').val(),"YYYY-MM-DD").add(1,"days");
+//     $("#date-select").val(nextDate.format("YYYY-MM-DD"));
+//     $("#date-select").trigger("change");
+// });

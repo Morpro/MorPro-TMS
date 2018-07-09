@@ -90,6 +90,13 @@ module.exports = function(app) {
         });
     });
 
+    app.delete("/api/loads/unassignloads", (req,res)=>{
+        db.LoadsUser.destroy({where:{id:req.params.id}})
+        .then(unassignload=>{
+            res.json(unassignload)
+        });
+    });
+
 //     // ---------------------------date search info--------------------------//
 
 

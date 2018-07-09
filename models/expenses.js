@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
      Expenses.associate = function(models) {
-     Expenses.belongsToMany(models.User, {through:'UserExpenses'});
+     
          //Loads.belongsTo
    };
 
