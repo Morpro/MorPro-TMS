@@ -119,7 +119,10 @@ $(document).ready(function() {
                     .append($("<td>").text(load.Weight))
                     .append($("<td>").text(load.Rate))
                     .append($("<td id='info'>").append("<button class='btn btn-info'>+</button>"))
-                    .append($("<td class='Status' style=''>").append("<p>").text(status).addClass("label").addClass(statusClass))
+                    .append($("<td>").append($("<p class='Status'>").text(status).addClass("label").addClass(statusClass)))
+                    .append($("<td>").append($("<p class='Status'>").text(load.DriverStatus).addClass("label").addClass(statusClass)))
+
+
                 var $childRow = $('<tr class="child">')
                 $childRow.append($('<td colspan="1">').text(load.Rate)).hide()
                          .append($('<td colspan="1">').text(load.Weight)).hide()
@@ -163,12 +166,11 @@ $(document).ready(function() {
      //  UNASSIGNS LOAD FROM A USER
     $("#unassign-load-form").submit(event=>{
         event.preventDefault();
-        $.post("/api/loads/unassignloads", {
-             UserId: $("#user-select").val(),
-             LoadId:$("#load-select").val()
-        }).done(data=>{
+        $.ajax("/api/loads/unassignloads/"+$("#unload-select").val(),{
+            method: "DELETE"
+        }).done( function(data){
             console.log(data);
-            $("#assign-load-form").trigger("reset");
+            $("#unassign-load-form").trigger("reset");
         });
     });
 

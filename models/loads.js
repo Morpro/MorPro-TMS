@@ -8,12 +8,13 @@ module.exports = function(sequelize, DataTypes) {
     "Dropoff": DataTypes.STRING,
     "Weight": DataTypes.STRING,
     "Rate": DataTypes.INTEGER,
+    "DriverStatus": DataTypes.STRING,
     "Status": {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false}
   });
-    
+
 
      Loads.associate = function(models) {
      Loads.belongsToMany(models.User, {through:'LoadsUser'});

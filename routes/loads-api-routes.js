@@ -90,10 +90,17 @@ module.exports = function(app) {
         });
     });
 
-    app.delete("/api/loads/unassignloads", (req,res)=>{
-        db.LoadsUser.destroy({where:{id:req.params.id}})
+    app.delete("/api/loads/unassignloads/:id", (req,res)=>{
+        db.LoadsUser.destroy({where:{LoadId:req.params.id}})
         .then(unassignload=>{
             res.json(unassignload)
+        });
+    });
+
+    app.get("/api/loadusers", function(req,res){
+        db.LoadsUser.findAll({include: [{ all: true }]})
+        .then(function(roles){
+            res.json(roles);
         });
     });
 
