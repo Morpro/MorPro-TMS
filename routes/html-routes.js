@@ -46,6 +46,11 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/quote.html"));
     });
 
+
+    app.get("/manage", isAuthenticated, function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/Manage-Load.html"));
+    });
+
     app.get("/roles", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/roleApiTest.html"));
     });
