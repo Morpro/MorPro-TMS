@@ -9,6 +9,7 @@
   <!-- VENDOR CSS -->
   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="assets/css/main.css">
@@ -91,11 +92,29 @@
             <li><a href="/dashboard" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
             <li><a href="/members" class="active"><i class="lnr lnr-code"></i> <span>Load Board</span></a></li>
             <li><a href="/quote" class=""><i class="lnr lnr-chart-bars"></i> <span>Get a quote</span></a></li>
-            <li><a href="Manage-Load.html" class=""><i class="lnr lnr-cog"></i> <span>Manage Load</span></a></li>
-            <li><a href="payroll.html" class=""><i class="lnr lnr-alarm"></i> <span>Payments</span></a></li>
             <li>
-              <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Tools</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Manage Load</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="subPages" class="collapse ">
+                <ul class="nav">
+                  <li><a href="Manage-Load.html" class="">Create a New Contract</a></li>
+                  <li><a href="Manage-Contract.html" class="">Manage Contract</a></li>
+                  <li><a href="page-lockscreen.html" class="">Assign Contract</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Accounting</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <div id="subPages2" class="collapse ">
+                <ul class="nav">
+                  <li><a href="payroll.html" class="">Load Payments</a></li>
+                  <li><a href="page-login.html" class="">Expenses</a></li>
+                  <li><a href="page-lockscreen.html" class="">Invoice Generator (beta)</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Tools</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+              <div id="subPages3" class="collapse ">
                 <ul class="nav">
                   <li><a href="page-profile.html" class="">Maps</a></li>
                   <li><a href="page-login.html" class="">Create Invoice</a></li>
@@ -103,9 +122,6 @@
                 </ul>
               </div>
             </li>
-            <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-            <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-            <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
           </ul>
         </nav>
       </div>
@@ -113,6 +129,176 @@
     <!-- END LEFT SIDEBAR -->
     <!-- MAIN -->
     <div class="main">
+    <div class="col-sm-12">
+        <div class="panel">
+              <div class="panel-heading">
+                <h3 class="panel-title">Manage Load</h3>
+              </div>
+
+              <div class="panel-body">
+
+                <div style="display: none" id="alert" class="alert alert-success" role="alert">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                  <span class="msg">Loaded was successfully Updated!</span>
+                </div>
+
+                <div class="container col-sm-3">
+                   <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #00AAFF; border-color: #00a0f0;">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion4" href="#collapse4"><i class="fa fa-user-plus"></i>Create Load</a>
+                          </h4>
+                        </div>
+                        <div id="collapse4" class="panel panel-collapse collapse">
+                          <form class="" id="create-load-form">
+                            <div style="display: none" id="alert" class="alert alert-success" role="alert">
+                              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                              <span class="msg">Loaded was successfully posted!</span>
+                            </div>
+                                <div class="row">
+                                    <div class="col-lg-3 form-group">
+                                    <label for="loadName">Load Name</label>
+                                    <br>
+                                    <input class="form-control" type="text" id="loadName">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                    <label for="loadCompany">company</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="loadCompany">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                    <label for="loadNumber">Load number</label>
+                                    <br>
+                                    <input type="text" class="form-control" id="loadNumber">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                        <label for="loadPickUp">Pick Up</label>
+                                        <br>
+                                        <input type="text" class="form-control" id="loadPickUp">
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-3 form-group">
+                                        <label for="loadPickUp">Pick Up</label>
+                                        <br>
+                                        <input type="text" class="form-control" id="loadPickUp">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                        <label for="loadDropOff">Drop Off</label>
+                                        <br>
+                                        <input type="text" class="form-control" id="loadDropOff">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                        <label for="loadWeight">Weight</label>
+                                        <br>
+                                        <input type="text" class="form-control" id="loadWeight">
+                                    </div>
+
+                                    <div class="col-lg-3 form-group">
+                                        <label for="loadRate">Rate</label>
+                                        <br>
+                                        <input class="form-control" type="text" id="loadRate">
+                                  </div>
+                                </div>
+                                <input style="float: right" class="btn btn-primary" type="submit" id="ceate-load-submit">
+                         </form>
+                        </div>
+                         </div>
+                      </div>
+                </div>
+
+              <div class="container col-sm-3">
+                 <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading" style="background-color: #00AAFF; border-color: #00a0f0;">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse1"><i class="fa fa-user-plus"></i>Assign Load to Driver</a>
+                        </h4>
+                      </div>
+                      <div id="collapse1" class="panel panel-collapse collapse">
+                        <form id="assign-load-form">
+                            <div class="selectOption">
+                                <label for="load-select"><h4> Assign load</h4></label>
+                                <br>
+                                <select id="load-select"></select>
+                            </div>
+
+                            <div class="selectOption">
+                              <label for="user-select"><h4> Assign load</h4></label>
+                              <br>
+                              <select id="user-select"></select>
+                            </div>
+                            <input  class="btn btn-primary" type="submit" id="assign-load-submit">
+                        </form>
+                      </div>
+                       </div>
+                    </div>
+              </div>
+
+              <div class="container col-sm-3">
+                   <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #00AAFF; border-color: #00a0f0;">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion3" href="#collapse3">Update Contract Status</a>
+                          </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                          <form id="loadStatus">
+                              <div class="selectOption">
+                                 <label for="loadRate"><h4>Load Name</h4></label>
+                                 <br>
+                                 <select id="loadId"></select>
+                             </div>
+                                    <br>
+                             <div class="selectOption">
+                             <select id="status">
+                               <option value="0">avalible</option>
+                               <option value="1">Booked</option>
+                             </select>
+                           </div>
+                             <input class="btn btn-primary" type="submit" id="updateStatus">
+                         </form>
+                        </div>
+                         </div>
+                      </div>
+              </div>
+
+              <div class="container col-sm-3">
+                   <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #00AAFF; border-color: #00a0f0;">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2">Unassign Contract</a>
+                          </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                          <form id="unassign-load-form">
+                              <h4>Unassign Loads</h4>
+                             <br>
+                             <h3> select load</h3>
+                              <select id="unload-select"></select>
+                              <input type="submit" id="unassign-task-submit"></select>
+                          </form>
+                        </div>
+                         </div>
+                    </div>
+              </div>
+
+              </div>
+
+         </div>
+    </div>
+
+
       <div class="col-md-12">
               <!-- TABLE HOVER -->
               <div class="panel">
@@ -143,63 +329,14 @@
                 </div>
               </div>
 
-              <div class="panel">
-                <div class="panel-heading">
-                  <div style="display: none" id="alert" class="alert alert-success" role="alert">
-                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    <span class="msg">Loaded Status was successfully Updated!</span>
-                  </div>
-                  <h3 class="panel-title">Assign Load</h3>
-                </div>
-                <div class="row panel-body">
-                        <div  class="col-sm-4">
-                          <form id="assign-load-form">
-                              <div class="selectOption">
-                                  <label for="load-select"><h4> Assign load</h4></label>
-                                  <br>
-                                  <select id="load-select"></select>
-                              </div>
-
-                              <div class="selectOption">
-                                <label for="user-select"><h4> Assign load</h4></label>
-                                <br>
-                                <select id="user-select"></select>
-                              </div>
-                              <input  class="btn btn-primary" type="submit" id="assign-load-submit">
-                          </form>
-                          </div>
-
-                          <div  class="col-sm-4">
-                            <form id="unassign-load-form">
-                                <h4>Unassign Loads</h4>
-                               <br>
-                               <h3> select load</h3>
-                                <select id="unload-select"></select>
-                                <input type="submit" id="unassign-task-submit"></select>
-                            </form>
-                            </div>
+        </div>
 
 
-                        <div  class="col-sm-4">
-                          <form id="loadStatus">
-                              <div class="selectOption">
-                                 <label for="loadRate"><h4>Load Name</h4></label>
-                                 <br>
-                                 <select id="loadId"></select>
-                             </div>
-                                    <br>
-                             <div class="selectOption">
-                             <select id="status">
-                               <option value="0">avalible</option>
-                               <option value="1">Booked</option>
-                             </select>
-                           </div>
-                             <input class="btn btn-primary" type="submit" id="updateStatus">
-                         </form>
-                       </div>
-                 </div>
-            </div>
+        <div class="panel-heading">
+
       </div>
+
+
       <!-- MAIN CONTENT -->
       <!-- <div id="tabledatabase">
           <table class="/">
@@ -237,6 +374,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/manage-contract.js"></script>
+  <script type="text/javascript" src="js/manage-loads.js"></script>
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--   <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>

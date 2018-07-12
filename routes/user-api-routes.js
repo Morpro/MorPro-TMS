@@ -114,6 +114,16 @@ module.exports = function(app) {
         });
     });
 
+   // gets all user customers
+    app.get("/api/users/:id/cms", (req,res)=>{
+        db.User.findById(req.params.id)
+        .then(user=>{
+            user.getCms()
+            .then(cms=>{
+                res.json(cms);
+            });
+        });
+    });
 
 
     app.get("/api/users/:id/roles", (req,res)=>{

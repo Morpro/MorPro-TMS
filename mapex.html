@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapfit Map</title>
+    <link href="http://cdn.mapfit.com/v2-4/assets/css/mapfit.css" rel='stylesheet' />
+</head>
+<body>
+    <div id="mapfit">
+     	 <--! your map will be loaded here -->
+  	</div>
+
+    <script src="https://cdn.mapfit.com/v2-4/assets/js/tetragon.js"></script>
+    <script src="http://cdn.mapfit.com/v2-4/assets/js/mapfit.js"></script>
+    <script>
+      // javascript from steps 4 & 5 below will go here
+      // add api key
+mapfit.apikey = "591dccc4e499ca0001a4c6a4a504e9bb00c44126b5386d5bd23c5f74";
+
+// draw map
+let map = mapfit.MapView('mapfit', {theme: 'day'});
+
+//set zoom
+map.setZoom(13);
+
+    </script>
+</body>
+</html>

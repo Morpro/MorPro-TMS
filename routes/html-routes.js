@@ -38,6 +38,10 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/userApiTest.html"));
     });
 
+    app.get("/mapex", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/mapex.html"));
+    });
+
     app.get("/dashboard", isAuthenticated, function(req, res) {
         res.sendFile(path.join(__dirname, "../public/dashboard.html"));
     });

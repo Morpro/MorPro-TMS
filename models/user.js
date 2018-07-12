@@ -48,6 +48,7 @@ module.exports = function(sequelize, DataTypes) {
         User.belongsToMany(models.Loads, {through:'LoadsUser'});
         User.hasMany(models.Ratings, {as:'UserRatings'});
         User.hasMany(models.Expenses, {as:'UserExpenses'});
+        User.belongsToMany(models.Cms, {through: 'user_cms', foreignKey: 'userId' });
     };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     User.prototype.validPassword = function(password) {

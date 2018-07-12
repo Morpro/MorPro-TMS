@@ -17,6 +17,16 @@ module.exports = function(app) {
         });
     });
 
+    // find and displays loads with driverstatus unasigned// THIS IS FOR ALERT MESSAGE OF CURRENT LOAD USER IS ASSIGNED 
+    app.get("/api/loads/status/:current", function(req,res){
+         db.Loads.findAll({where:{status:req.params.current},include: [{ all: true }]})
+         .then(function(Loads){
+             res.json(Loads);
+         });
+     });
+
+
+
 // finds all loads including nested
 //can also be for one id if you follow top example
     app.get("/api/loadsinfo", function(req,res){

@@ -174,6 +174,48 @@ $(document).ready(function() {
         });
     });
 
+
+
+    $("#userToChange").on("change", event=>{
+        $.get("/api/users/"+$("#userToChange").val())
+        .then(user=>{
+            $("#newFirstName").val(user.firstName);
+            $("#newLastName").val(user.lastName);
+            $("#newUserName").val(user.userName);
+            $("#newEmail").val(user.email);
+        });
+    });
+
+
+  // update and edit load info
+  
+    $("#user-change").submit(event=>{
+        event.preventDefault();
+        if(!$("#userToChange").val()) return;
+        var newUser = {
+            id: $("#userToChange").val(),
+            firstName: $("#newFirstName").val(),
+            lastName: $("#newLastName").val(),
+            userName: $("#newUserName").val(),
+            email: $("#newEmail").val()
+        };
+        if(!!$("#newPassword").val()) {
+            newUser.password = $("#newPassword").val();
+        }
+        $.ajax("/api/users/", {
+            method:"PUT",
+            data: newUser
+        }).done( function(data){
+            $("#user-change").trigger("reset");
+            populateUsers();
+        });
+    });
+
+
+
+
+
+
 });
 
 

@@ -18,6 +18,16 @@ $(document).ready(function() {
         });
 
 
+      $.get("/api/users/"+id+"/loads")
+				.then(loads=>{
+					var allLoads = [];
+					loads.forEach(load=>{
+							allLoads.push(loads)
+							console.log("here are the users load", loads.last())
+							})
+
+				})
+
 
 
 
